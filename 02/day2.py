@@ -1,5 +1,21 @@
+
 import time
 from pathlib import Path
+
+
+def power(game):
+    power = {'red': 0, 'blue': 0, 'green': 0}
+    game = game.replace(';', ',')
+    game = game.replace(', ', ' ')
+    game = game.split()
+    for index, color in enumerate(game[1::2]):
+        power[color] = max(power.get(color, 0), int(game[index * 2]))
+    
+    result = 1
+    for value in power.values():
+        result = result * value
+    return result
+
 
 if __name__ == '__main__':
     # Start the timer
@@ -36,5 +52,6 @@ if __name__ == '__main__':
 
     
     print('Part 1:', sum(possible_games))
-    print('Part 2:')
+    print('Part 2:', sum([power(game) for game in games]))
+
     print("--- %s seconds ---" % (time.time() - start_time))

@@ -14,3 +14,10 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
 
 In the example above, games 1, 2, and 5 would have been possible if the bag had been loaded with that configuration. However, game 3 would have been impossible because at one point the Elf showed you 20 red cubes at once; similarly, game 4 would also have been impossible because the Elf showed you 15 blue cubes at once. 
 If you add up the IDs of the games that would have been possible, you get 8.
+
+## Part2
+What is the fewest number of cubes of each color that could have been in the bag to make the game possible?
+
+The power of a set of cubes is equal to the numbers of red, green, and blue cubes multiplied together. The power of the minimum set of cubes in game 1 is 48. In games 2-5 it was 12, 1560, 630, and 36, respectively. Adding up these five powers produces the sum 2286.
+
+For each game, find the minimum set of cubes that must have been present. What is the sum of the power of these sets?
