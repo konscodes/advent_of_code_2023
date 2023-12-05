@@ -1,57 +1,45 @@
-
 import time
 from pathlib import Path
 
 
-def power(game):
-    power = {'red': 0, 'blue': 0, 'green': 0}
-    game = game.replace(';', ',')
-    game = game.replace(', ', ' ')
-    game = game.split()
-    for index, color in enumerate(game[1::2]):
-        power[color] = max(power.get(color, 0), int(game[index * 2]))
-
-    result = 1
-    for value in power.values():
-        result = result * value
-    return result
+def neighbours(position: tuple):
+    # Check the neighbours of position
+    # If numbers update schematic_map and check the neighbours again
+    i,j = position
+    return i,j
 
 
-if __name__ == '__main__':
-    # Start the timer
-    start_time = time.time()
+# Start the timer
+start_time = time.time()
 
-    # Set filepath
-    script_path = Path(__file__).resolve()
-    file_path = script_path.parent / 'day2.txt'
+# Set filepath
+script_path = Path(__file__).resolve()
+file_path = script_path.parent / 'test.txt'
 
-    test_round = {'red': 12, 'green': 13, 'blue': 14}
+with open(file_path) as f:
+    # Split the data into list of strings
+    data = f.read().splitlines()
 
-    with open(file_path) as f:
-        # Split the data into list of strings
-        data = f.read().splitlines()
-        games = [x.split(sep=': ')[1] for x in data]
-
-        possible_games = []
-
-        for index, game in enumerate(games):
-            game_rounds = game.split(sep='; ')
-            possible = True
-            for game_round in game_rounds:
-                pairs = game_round.split(', ')
-                for pair in pairs:
-                    color = pair.split()[1]
-                    value = pair.split()[0]
-                    if int(value) > test_round[color]:
-                        possible = False
-                        break
-
-            if possible:
-                game_number = index + 1
-                possible_games.append(game_number)
+filters = '01234567890.'
 
 
-    print('Part 1:', sum([is_part() for symbol in ))
-    print('Part 2:')
+    
+# Schematic with all symbols in it in a grid
+schematic = [[x for x in line] for line in data]
 
-    print("--- %s seconds ---" % (time.time() - start_time))
+# Schematic map that will be populated with number locations that we need to sum up
+schematic_map = [[0] * len(data)] * len(data)
+
+# Schematic map with only special symbol location (i,j)
+symbol_map = [[(i, j) if value not in filters else 0
+               for j, value in enumerate(line)] for i, line in enumerate(data)]
+
+for i, line in enumerate(data):
+    for j, value in enumerate(line):
+        position = (i, j) if value not in filters
+        test = neighbours(position)
+
+print('Part 1:')
+print('Part 2:')
+
+print("--- %s seconds ---" % (time.time() - start_time))
