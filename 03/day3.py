@@ -53,10 +53,9 @@ for i, line in enumerate(data):
             if value == '*':
                 gears.append(position)
             crawl_neighbors(position)
-'''At this point the schematic map is filled with valid markers, 
-each one representing coordinates of its adjacent symbol.
-We will extract corresponding part numbers from schematic and 
-populate the dict matching each symbol to its numbers.'''
+
+# At this point the schematic map is filled with valid markers
+# Extract corresponding part numbers from schematic
 part_numbers = {}
 number = ''
 tuple_value = ()
@@ -71,8 +70,9 @@ for i in range(len(schematic_map)):
             number = ''
 
 print('Part 1:', sum(sum(numbers) for numbers in part_numbers.values()))
-'''At this point we have a dict matching symbols to all of their adjacent numbers.
-We just need to take and multiply only those that match Part 2 criteria for a gear.'''
+
+# At this point we have a dict matching symbols to all of their adjacent numbers
+# Multiply only those that match Part 2 criteria for a gear
 multiplication_sum = 0
 for key in gears:
     if key in part_numbers and len(part_numbers[key]) == 2:
