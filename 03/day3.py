@@ -4,7 +4,7 @@ from pathlib import Path
 
 def valid_neighbor(neighbor: tuple):
     grid_range = range(len(data))
-    x,y = neighbor
+    x, y = neighbor
     in_range = bool(x in grid_range and y in grid_range)
     already_marked = bool(schematic_map[x][y]) if in_range else True
     return in_range and not already_marked
@@ -15,13 +15,12 @@ def crawl_neighbors(starting_coordinates: tuple):
     Check the neighbors of position. 
     If numbers update schematic_map and check the neighbors again
     '''
-    i,j = starting_coordinates
-    neighbors = [(i-1, j-1), (i-1, j), (i-1, j+1),
-                (i, j-1), (i, j+1),
-                (i+1, j+1), (i+1, j), (i+1, j-1)]
+    i, j = starting_coordinates
+    neighbors = [(i - 1, j - 1), (i - 1, j), (i - 1, j + 1), (i, j - 1),
+                 (i, j + 1), (i + 1, j + 1), (i + 1, j), (i + 1, j - 1)]
     for neighbor in neighbors:
         if valid_neighbor(neighbor):
-            x,y = neighbor
+            x, y = neighbor
             if schematic[x][y] in numbers:
                 schematic_map[x][y] = position
                 crawl_neighbors(neighbor)
@@ -54,7 +53,6 @@ for i, line in enumerate(data):
             if value == '*':
                 gears.append(position)
             crawl_neighbors(position)
-
 '''At this point the schematic map is filled with valid markers, 
 each one representing coordinates of its adjacent symbol.
 We will extract corresponding part numbers from schematic and 
@@ -68,11 +66,11 @@ for i in range(len(schematic_map)):
             tuple_value = schematic_map[i][j]
             number += schematic[i][j]
         else:
-            part_numbers.setdefault(tuple_value, []).append(int(number)) if number else None
+            part_numbers.setdefault(tuple_value, []).append(
+                int(number)) if number else None
             number = ''
 
 print('Part 1:', sum(sum(numbers) for numbers in part_numbers.values()))
-
 '''At this point we have a dict matching symbols to all of their adjacent numbers.
 We just need to take and multiply only those that match Part 2 criteria for a gear.'''
 multiplication_sum = 0
