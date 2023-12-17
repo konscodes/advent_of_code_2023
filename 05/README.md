@@ -34,3 +34,7 @@ Looking at the first map and taking our initial seed [79, ]
 2. Once we get through each seed we should have a list of seeds with seed[-1] pointing at location
     extract the min location
     min([seed[-1] for seed in seeds])
+
+## Part 2: Mutlirange
+I tried brut and reverse brut approach starting from locations first however none of them worked on input data. 
+It seems that the algorithm needs to be improved to work with ranges in a more efficient way. Unfortunately unable to solve part 2 yet.
