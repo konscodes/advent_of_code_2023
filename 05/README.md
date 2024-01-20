@@ -38,3 +38,15 @@ Looking at the first map and taking our initial seed [79, ]
 ## Part 2: Mutlirange
 I tried brut and reverse brut approach starting from locations first however none of them worked on input data. 
 It seems that the algorithm needs to be improved to work with ranges in a more efficient way. Unfortunately unable to solve part 2 yet.
+
+The solution appears to be working with tuples opposed to ranges and mapping parts of target range to a new destination. Lets try to come up with a logic:
+1. For target (seed range) in [(79,93), (55,68)]
+    target is (79, 93)
+   for each block in maps
+        block is
+        50 98 2
+        52 50 48
+        for each a, b, c in line
+            source is (98,100)
+            destination is (50,52)
+            if target start <= 
